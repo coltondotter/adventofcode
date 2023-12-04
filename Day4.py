@@ -19,9 +19,7 @@ print(f'Part 1: {points}')
 # Part 2
 # Matches in a card are how many cards you add copies to, copies are how many copies get added to those cards
 # Dict to keep track of copies, starting with everything at 1
-copies = {}
-for i in range(len(cards)):
-    copies.update({i: 1})
+copies = [1 for i in range(len(cards))]
 
 total = 0
 for i, c in enumerate(cards):
@@ -32,7 +30,7 @@ for i, c in enumerate(cards):
             matches += 1
     if matches:
         for j in range(matches):
-            copies.update({i+j+1: copies[i+j+1]+copies[i]})
+            copies[i+j+1] = copies[i+j+1]+copies[i]
     total += copies[i]
 
 print(f'Part 2: {total}')
